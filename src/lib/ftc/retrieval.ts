@@ -51,7 +51,9 @@ const TERM_EXPANSIONS: Record<string, string[]> = {
   judging: ['award', 'interview', 'portfolio'],
   program: ['java', 'blocks', 'onbot', 'programming', 'sdk'],
   programming: ['java', 'blocks', 'onbot', 'opmode', 'sdk'],
+  ranking: ['rp'],
   register: ['registration', 'team'],
+  rp: ['ranking', 'points'],
   rules: ['competition manual', 'game manual', 'penalty'],
   score: ['scoring', 'points'],
 }

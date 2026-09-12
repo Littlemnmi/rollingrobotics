@@ -32,7 +32,7 @@ interface FtcTutorChatProps {
 }
 
 const EXAMPLE_QUESTIONS = [
-  'What robot rules should we check before FTC inspection?',
+  "How do you earn ranking points in this year's game?",
   'How should a new FTC team get started with programming?',
   'How are FTC judged awards evaluated?',
 ]
@@ -178,9 +178,10 @@ export function FtcTutorChat({
                 What would you like to learn about FTC?
               </h3>
               <p className="mt-3 max-w-xl text-sm leading-6 text-slate-600 dark:text-slate-300 sm:text-base">
-                Ask about game rules, robot design, programming, events, awards,
-                judging, or running a team. Questions outside FIRST Tech Challenge
-                are declined.
+                Questions default to the {manual.season} FTC game, so you can ask
+                naturally without mentioning FTC. You can also ask about robots,
+                programming, events, awards, or running a team. Clearly unrelated
+                questions are declined.
               </p>
               <div className="mt-7 grid w-full gap-3 sm:grid-cols-3">
                 {EXAMPLE_QUESTIONS.map((example) => (

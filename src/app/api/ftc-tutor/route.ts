@@ -10,10 +10,7 @@ import {
 } from '@/lib/ftc/manual-store'
 import { retrieveOfficialSourceContext } from '@/lib/ftc/official-sources'
 import { checkTutorRateLimit } from '@/lib/ftc/rate-limit'
-import {
-  isPotentiallyFtcRelated,
-  OUT_OF_SCOPE_MESSAGE,
-} from '@/lib/ftc/scope'
+import { OUT_OF_SCOPE_MESSAGE } from '@/lib/ftc/scope'
 import type {
   GroundingSource,
   TutorApiResponse,
@@ -72,18 +69,6 @@ export async function POST(request: Request): Promise<NextResponse> {
       url: manual.metadata.source,
     }
 
-    if (!isPotentiallyFtcRelated(messages)) {
-      const response: TutorApiResponse = {
-        answer: OUT_OF_SCOPE_MESSAGE,
-        rejected: true,
-        sources: [],
-        manual: manualStatus,
-      }
-      return NextResponse.json(response, {
-        headers: responseHeaders(rateLimit.remaining),
-      })
-    }
-
     const userQuestions = messages
       .filter((message) => message.role === 'user')
       .map((message) => message.content)
@@ -108,7 +93,7 @@ export async function POST(request: Request): Promise<NextResponse> {
       })),
     ]
 
-    const result = await answerWithAzureFoundry(messages, sources)
+    const result = await answerWithAzureFoundry(messages, sources, manual.metadata)
     if (!result.inScope) {
       const response: TutorApiResponse = {
         answer: OUT_OF_SCOPE_MESSAGE,

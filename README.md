@@ -117,6 +117,7 @@ src/
 - `npm run build` - Build for production
 - `npm run start` - Start production server
 - `npm run lint` - Run ESLint
+- `npm run test:ftc` - Run offline tutor context, scope, retrieval, and response regression tests
 - `npm run manual:update` - Check for and convert the latest official FTC manual
 
 ### Sushi FTC Tutor configuration
@@ -133,6 +134,12 @@ AZURE_FOUNDRY_MODEL=YOUR-DEPLOYMENT-NAME
 Responses API. The equivalent `AZURE_OPENAI_ENDPOINT`,
 `AZURE_OPENAI_API_KEY`, and `AZURE_OPENAI_DEPLOYMENT` names are also accepted.
 Keep API keys in Azure App Service settings; never commit them.
+
+Questions default to the FTC game and season in the active competition manual.
+Students can ask "how do you earn ranking points in this year's game?" or short
+follow-ups without including FTC keywords. The model applies this context before
+deciding scope; clearly unrelated requests are still declined. The default season
+follows manual updates automatically rather than being hard-coded.
 
 The bundled `data/ftc-game-manual.md` is generated from the official
 competition-manual PDF. Each Node server process checks the official manual
